@@ -1,0 +1,78 @@
+<!-- Image and text -->
+<nav class="navbar navbar-light bg-light">
+    <h1 style="transform: translate(33rem,2px);">Register Form</h1>
+</nav>
+<div class="container" *ngIf="value" ng-hide="myvar">
+  <div class="form-group">
+    <label for="exampleFormControlName">Name</label>
+    <input type="text" class="form-control" [(ngModel)]="user.name" placeholder="Enter your Name">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlEmail">Email</label>
+    <input type="email" class="form-control" [(ngModel)]="user.email" placeholder="example@gmail.com">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlphn">Contact Number</label>
+    <input type="text" class="form-control" [(ngModel)]="user.cntno" placeholder="Enter your contactnumber" maxlength="10">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlAge">Age</label>
+    <input type="text" class="form-control" [(ngModel)]="user.age" placeholder="Enter your Age" maxlength="2"> 
+  </div>
+  <div class="form-group">
+    <label for="Password">Password</label>
+    <input type="password" class="form-control"  [(ngModel)]="user.pwd" placeholder="Enter Password">
+  </div>
+<button type="button" class="btn btn-primary btn-lg btn-block" (click)="submituser()">Create User</button>
+<button type="button" class="btn btn-primary btn-lg btn-block" (click)="getuser()">Get Subscribed user list</button> 
+<div class="container">
+  <div class= "row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Contact Number</th>
+          <th scope="col">Age</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody *ngFor = "let data of allData">
+        <tr>
+          <td>{{data._id}}</td>
+          <td>{{data.name}}</td>
+          <td>{{data.email}}</td>
+          <td>{{data.contact_number}}</td>
+          <td>{{data.age}}</td>
+          <td><button type="button" class="btn btn-primary" (click)="hidden(false,data._id)">Edit</button></td>
+          <td><button type="button" class="btn btn-danger" (click)="deleteUser(data._id)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+</div>
+  <div class="container" *ngIf="!value">
+  <div class="form-group">
+    <label for="exampleFormControlName">Edit Id</label>
+    <input type="text" class="form-control"  placeholder="The Edit details id place here" value="{{_id}}" [(ngModel)]="_id">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlName">Name</label>
+    <input type="text" class="form-control" [(ngModel)]="editname" placeholder="Enter your Name">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlEmail">Email</label>
+    <input type="email" class="form-control" [(ngModel)]="editemail" placeholder="example@gmail.com" >
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlphn">Contact Number</label>
+    <input type="text" class="form-control" [(ngModel)]="editcntno" placeholder="Enter your contactnumber">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlAge">Age</label>
+    <input type="number" class="form-control" [(ngModel)]="editage" placeholder="Enter your Age"> 
+  </div>
+<button type="button" class="btn btn-primary btn-lg btn-block" (click)="edituser(_id); hidden(true);">Edit User</button>
